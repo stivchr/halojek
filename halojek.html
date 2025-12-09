@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Halojek</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c24f19;
+            padding: 20px;
+        }
+        #form-container {
+            max-width: 450px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #d7dadb;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            color: #10a9c4;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        /* Styling untuk Input, Textarea, dan Dropdown */
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            background-color: #10a9c4;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #1FAF59;
+        }
+        .warning {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffe6e6;
+            border-left: 5px solid #ff4d4d;
+            color: #333;
+        }
+        #error-message {
+            color: #ff4d4d;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div id="form-container">
+    <h3>Orderan Hibualamo Ojek</h3>
+    
+    <div id="error-message"></div>
+
+    <form id="form-pesanan">
+
+        <label for="tipe-pesanan">Tipe Pesanan:</label>
+        <select id="tipe-pesanan" required>
+            <option value="">-- Pilih Tipe Pesanan --</option>
+            <option value="Ambil Barang">📦 Ambil Barang</option>
+            <option value="Makanan/Minuman">🍽️ Makanan/Minuman</option>
+            <option value="Ojek">🏍️ Ojek</option>
+        </select>
+
+        <label for="nama">Nama Pelanggan:</label>
+        <input type="text" id="nama" placeholder="Cth: aren" required>
+        
+        <label for="pesanan">Detail Pesanan/Barang:</label>
+        <textarea id="pesanan" rows="4" placeholder="Cth: Barang: Dokumen A ke Jl. X. Makanan: 2 Nasi Goreng." required></textarea>
+        
+        <label for="alamat">Alamat Pickup/Pengiriman:</label>
+        <input type="text" id="alamat" placeholder="Cth: Jl. Trans halut" required>
+        
+        <button type="submit">Kirim Pesanan</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('form-pesanan').addEventListener('submit', function(event) {
+        // Mencegah form memuat ulang halaman
+        event.preventDefault();
+
+        const noWhatsApp = '6282379631626'; 
+        // 1. Ambil nilai dari semua input, termasuk dropdown baru
+        const tipePesanan = document.getElementById('tipe-pesanan').value;
+        const nama = document.getElementById('nama').value;
+        const pesanan = document.getElementById('pesanan').value;
+        const alamat = document.getElementById('alamat').value;
+        const errorMessageDiv = document.getElementById('error-message');
+
+        // 2. Kustom Validasi (Memastikan semua kolom terisi)
+        if (!tipePesanan || !nama || !pesanan || !alamat) {
+            errorMessageDiv.textContent = '❌ Kesalahan: Mohon lengkapi semua kolom yang wajib diisi!';
+            return; // Hentikan proses jika ada kolom kosong
+        } else {
+            errorMessageDiv.textContent = ''; // Hapus pesan error jika validasi berhasil
+        }
+
+        // 3. Susun Pesan yang akan dikirim
+        let pesan = `
+        PESANAN BARU HALOJEK
+        Tipe Pesanan: ${tipePesanan}
+        Dari: ${nama}
+        Pesanan: ${pesanan}
+        Alamat Pickup/Kirim: ${alamat}
+
+        Mohon segera diproses. Terima kasih.
+        `;
+
+        // 4. Encoding Pesan
+        const pesanTerencode = encodeURIComponent(pesan);
+
+        // 5. Buat Tautan WhatsApp Final
+        const tautanWhatsApp = `https://wa.me/${noWhatsApp}?text=${pesanTerencode}`;
+
+        // 6. Arahkan pengguna ke Tautan
+        window.location.href = tautanWhatsApp;
+        
+        // Opsional: Reset form
+        // this.reset();
+    });
+</script>
+
+</body>
+</html>
