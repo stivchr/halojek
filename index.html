@@ -2,13 +2,19 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Halojek</title>
     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    
+    <title>Hibualamo Ojek</title>
+    
+
     <style>
+        /* Styling Dasar */
         body {
             font-family: Arial, sans-serif;
             background-color: #c24f19;
             padding: 20px;
+            margin: 0; /* Pastikan tidak ada margin default yang mengganggu */
         }
         #form-container {
             max-width: 450px;
@@ -30,7 +36,7 @@
             font-weight: bold;
             color: #333;
         }
-        /* Styling untuk Input, Textarea, dan Dropdown */
+        /* Styling untuk Input, Textarea, dan Dropdown (100% width sudah responsif) */
         input[type="text"], textarea, select {
             width: 100%;
             padding: 12px;
@@ -69,6 +75,24 @@
             font-weight: bold;
             margin-bottom: 15px;
             text-align: center;
+        }
+        
+        /* RESPONSIF: Aturan Khusus untuk Layar Kecil (Mobile) */
+        @media (max-width: 600px) {
+            body {
+                padding: 0; /* Hapus padding body agar form memenuhi lebar layar */
+            }
+            #form-container {
+                margin: 0; /* Hapus margin agar form memenuhi lebar layar */
+                padding: 15px; /* Sedikit kurangi padding internal */
+                border-radius: 0; /* Hapus sudut membulat untuk tampilan full screen di mobile */
+                box-shadow: none; /* Hapus shadow di mobile */
+                max-width: 100%;
+                min-height: 100vh; /* Memastikan ketinggian form setidaknya setinggi layar */
+            }
+            h3 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
