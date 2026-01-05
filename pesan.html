@@ -94,6 +94,14 @@
             transition: background 0.3s;
             margin-top: 10px;
         }
+        .back-btn2 {
+            display: inline-block;
+            margin-top: 15px;
+            color: red;
+            text-decoration: none;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
         button:hover { background: var(--primary-hover); }
         button:disabled {
             background: #999;
@@ -110,6 +118,7 @@
 <div class="container">
     <header>
         <h1>Hibualamo Ojek</h1>
+        <a href="ongkir.html" class="back-btn2">Cek Ongkir Wilayah</a><br>
         <p>Pesan Ojek • Antar Makanan • Ambil Barang</p>
     </header>
     <main>
@@ -122,9 +131,9 @@
                 <label for="tipe-pesanan">Tipe Pesanan <span aria-label="wajib">*</span></label>
                 <select id="tipe-pesanan" required>
                     <option value="">-- Pilih Tipe Pesanan --</option>
-                    <option value="Ambil Barang">Ambil Barang</option>
-                    <option value="Makanan/Minuman">Makanan/Minuman</option>
-                    <option value="Ojek (Antar Jemput Orang)">Ojek (Antar Jemput Orang)</option>
+                    <option value="📦 Ambil Barang">📦 Ambil Barang</option>
+                    <option value="🍽️ Makanan/Minuman">🍽️ Makanan/Minuman</option>
+                    <option value="🏍️ Ojek (Antar Jemput Orang)">🏍️ Ojek (Antar Jemput Orang)</option>
                 </select>
             </div>
 
@@ -145,7 +154,7 @@
 
             <div class="form-group">
                 <label for="tujuan">Alamat Tujuan</label>
-                <input type="text" id="tujuan" placeholder="antar ke mana?">
+                <input type="text" id="tujuan" placeholder="Antar ke mana?">
             </div>
 
             <button type="submit" id="submit-btn">📤 Kirim Pesanan via WhatsApp</button>
@@ -157,15 +166,28 @@
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const infoAuto = document.getElementById('info-auto');
+    const tipeSelect = document.getElementById('tipe-pesanan');
 
-    if (urlParams.has('tipe')) {
-        document.getElementById('tipe-pesanan').value = urlParams.get('tipe');
+    // Ambil nilai tipe dari URL jika ada
+    const tipeFromUrl = urlParams.get('tipe');
+
+    if (tipeFromUrl) {
+        // Langsung set sesuai tipe dari URL (ojek, ambil barang, atau makanan)
+        tipeSelect.value = tipeFromUrl;
+    } else if (urlParams.has('pesanan')) {
+        // Jika datang dari merchant (ada pesanan), pakai default makanan
+        tipeSelect.value = '🍽️ Makanan/Minuman';
     }
+    // Jika tidak ada tipe sama sekali, biarkan kosong (default select)
+
+    // Auto-fill detail pesanan jika dari merchant
     if (urlParams.has('pesanan')) {
         document.getElementById('pesanan').value = decodeURIComponent(urlParams.get('pesanan'));
         infoAuto.textContent = '✅ Detail pesanan sudah otomatis terisi dari menu yang Anda pilih!';
         infoAuto.style.display = 'block';
     }
+
+    // Auto-fill alamat pickup jika ada
     if (urlParams.has('pickup')) {
         document.getElementById('pickup').value = decodeURIComponent(urlParams.get('pickup'));
     }
@@ -193,6 +215,15 @@ document.getElementById('form-pesanan').addEventListener('submit', function(e) {
 
     const alamatTujuan = tujuan ? tujuan : 'Sama dengan alamat pickup';
 
+    const ongkirInfo = `
+*Biaya Pengantaran (Ongkir):*
+- Wilayah 1 (Pusat Tobelo): Rp 10.000
+- Wilayah 2: Rp 15.000
+- Wilayah 3: Rp 20.000
+
+Driver akan konfirmasi ongkir sesuai alamat tujuan.
+`;
+
     const pesan = `
 *PESANAN BARU - HIBUALAMO OJEK* 🚀
 
@@ -205,6 +236,8 @@ ${pesanan}
 *Alamat Pickup:* ${pickup}
 *Alamat Tujuan:* ${alamatTujuan}
 
+${ongkirInfo}
+
 Mohon segera diproses ya, terima kasih!
     `.trim();
 
@@ -216,7 +249,7 @@ Mohon segera diproses ya, terima kasih!
 
     setTimeout(() => {
         this.reset();
-        // Kembalikan nilai yang auto-fill jika ada
+        // Kembalikan auto-fill setelah reset
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('pesanan')) {
             document.getElementById('pesanan').value = decodeURIComponent(urlParams.get('pesanan'));
@@ -224,9 +257,7 @@ Mohon segera diproses ya, terima kasih!
         if (urlParams.has('pickup')) {
             document.getElementById('pickup').value = decodeURIComponent(urlParams.get('pickup'));
         }
-        if (urlParams.has('tipe')) {
-            document.getElementById('tipe-pesanan').value = urlParams.get('tipe');
-        }
+        document.getElementById('tipe-pesanan').value = '🍽️ Makanan/Minuman'; // Tetap terpilih setelah reset
         submitBtn.disabled = false;
         submitBtn.textContent = '📤 Kirim Pesanan via WhatsApp';
     }, 1000);
