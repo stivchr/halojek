@@ -2,175 +2,126 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    
-    <title>Hibualamo Ojek</title>
-    
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hibualamo Ojek - Dashboard</title>
+    <meta name="description" content="Hibualamo Ojek">
     <style>
-        /* Styling Dasar */
+        :root {
+            --primary: #10a9c4;
+            --primary-hover: #0d8ca3;
+            --accent: #e67e22;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --bg: #f8f9fa;
+            --card: white;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #c24f19;
-            padding: 20px;
-            margin: 0; /* Pastikan tidak ada margin default yang mengganggu */
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #ffebcc, #fff3e0);
+            color: #2c3e50;
+            min-height: 100vh;
+            padding: 20px 15px;
         }
-        #form-container {
-            max-width: 450px;
-            margin: 20px auto;
-            padding: 30px;
-            background-color: #d7dadb;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .container { max-width: 560px; margin: 0 auto; text-align: center; }
+        header {
+            margin-bottom: 40px;
+            padding: 30px 0;
         }
-        h3 {
-            color: #10a9c4;
-            text-align: center;
-            margin-bottom: 25px;
+        h1 {
+            font-size: 2.4rem;
+            color: var(--primary);
+            margin-bottom: 8px;
         }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
+        p.subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 30px;
         }
-        /* Styling untuk Input, Textarea, dan Dropdown (100% width sudah responsif) */
-        input[type="text"], textarea, select {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box; 
-            font-size: 16px;
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
         }
-        textarea {
-            resize: vertical;
+        .service-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
         }
-        button {
-            background-color: #10a9c4;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 18px;
-            transition: background-color 0.3s ease;
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
-        button:hover {
-            background-color: #1FAF59;
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin: 16px 0 8px;
         }
-        .warning {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #ffe6e6;
-            border-left: 5px solid #ff4d4d;
-            color: #333;
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
         }
-        #error-message {
-            color: #ff4d4d;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-align: center;
+        .icon {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
         }
-        
-        /* RESPONSIF: Aturan Khusus untuk Layar Kecil (Mobile) */
-        @media (max-width: 600px) {
-            body {
-                padding: 0; /* Hapus padding body agar form memenuhi lebar layar */
-            }
-            #form-container {
-                margin: 0; /* Hapus margin agar form memenuhi lebar layar */
-                padding: 15px; /* Sedikit kurangi padding internal */
-                border-radius: 0; /* Hapus sudut membulat untuk tampilan full screen di mobile */
-                box-shadow: none; /* Hapus shadow di mobile */
-                max-width: 100%;
-                min-height: 100vh; /* Memastikan ketinggian form setidaknya setinggi layar */
-            }
-            h3 {
-                font-size: 1.5em;
-            }
+        footer {
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 480px) {
+            .services-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.1rem; }
         }
     </style>
 </head>
 <body>
+<div class="container">
+    <header>
+        <h1>Hibualamo Ojek</h1>
+        <p class="subtitle">Layanan Antar-Jemput Terpercaya di Tobelo & Sekitarnya</p>
+    </header>
 
-<div id="form-container">
-    <h3>Orderan Hibualamo Ojek</h3>
-    
-    <div id="error-message"></div>
+    <div class="services-grid">
 
-    <form id="form-pesanan">
+        <!-- Ojek Antar Jemput Orang -->
+        <a href="pesan.html?tipe=%F0%9F%8F%8D%EF%B8%8F%20Ojek%20(Antar%20Jemput%20Orang)" class="service-card">
+            <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-motorbike"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 5a1 1 0 0 1 .894 .553l3.225 6.449l.08 .003a4 4 0 1 1 -4.199 3.995l.005 -.2a4 4 0 0 1 2.111 -3.33l-.557 -1.115l-3.352 3.352a1 1 0 0 1 -.707 .293h-3.626q .124 .481 .126 1a4 4 0 1 1 -8 0l.005 -.2a4 4 0 0 1 6.33 -3.049l1.749 -1.751h-3.084a1 1 0 0 1 -.993 -.883l-.007 -.117a1 1 0 0 1 1 -1h9.381l-1 -2h-1.381a1 1 0 0 1 -.993 -.883l-.007 -.117a1 1 0 0 1 1 -1z" /></svg></div>
+            <h3>Ojek Orang</h3>
+            <p>Antar atau jemput penumpang</p>
+        </a>
 
-        <label for="tipe-pesanan">Tipe Pesanan:</label>
-        <select id="tipe-pesanan" required>
-            <option value="">-- Pilih Tipe Pesanan --</option>
-            <option value="Ambil Barang">📦 Ambil Barang</option>
-            <option value="Makanan/Minuman">🍽️ Makanan/Minuman</option>
-            <option value="Ojek">🏍️ Ojek</option>
-        </select>
+        <!-- Ambil / Antar Barang -->
+        <a href="pesan.html?tipe=%F0%9F%93%A6%20Ambil%20Barang" class="service-card">
+            <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-box"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" /><path d="M12 12l8 -4.5" /><path d="M12 12l0 9" /><path d="M12 12l-8 -4.5" /></svg></div>
+            <h3>Ambil / Antar Barang</h3>
+            <p>Kirim dokumen, paket, atau belanjaan</p>
+        </a>
 
-        <label for="nama">Nama Pelanggan:</label>
-        <input type="text" id="nama" placeholder="Cth: aren" required>
-        
-        <label for="pesanan">Detail Pesanan/Barang:</label>
-        <textarea id="pesanan" rows="4" placeholder="Cth: Barang: Dokumen A ke Jl. X. Makanan: 2 Nasi Goreng." required></textarea>
-        
-        <label for="alamat">Alamat Pickup/Pengiriman:</label>
-        <input type="text" id="alamat" placeholder="Cth: Jl. Trans halut" required>
-        
-        <button type="submit">Kirim Pesanan</button>
-    </form>
+        <!-- Lihat Semua Merchant (opsional tambahan) -->
+        <a href="merchant.html" class="service-card">
+            <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-building-store"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21l18 0" /><path d="M3 7v1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1m0 1a3 3 0 0 0 6 0v-1h-18l2 -4h14l2 4" /><path d="M5 21l0 -10.15" /><path d="M19 21l0 -10.15" /><path d="M9 21v-4a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v4" /></svg></div>
+            <h3>Lihat Semua Merchant</h3>
+            <p>Daftar lengkap resto & cafe</p>
+        </a>
+
+                <!-- Pesan Makanan -->
+        <a href="pesan.html" class="service-card">
+            <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-car"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M15 17a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M5 17h-2v-6l2 -5h9l4 5h1a2 2 0 0 1 2 2v4h-2m-4 0h-6m-6 -6h15m-6 0v-5" /></svg></div>
+            <h3>Pesan Mobil</h3>
+            <p>antar atau jemput penumpang dengan mobil</p>
+        </a>
+    </div>
+
+    <footer>
+        <p>📍 Melayani Tobelo dan sekitarnya<br>
+        📱 Hubungi Admin: <a href="https://wa.me/6282379631626">+62 823-7963-1626</a></p>
+    </footer>
 </div>
-
-<script>
-    document.getElementById('form-pesanan').addEventListener('submit', function(event) {
-        // Mencegah form memuat ulang halaman
-        event.preventDefault();
-
-        const noWhatsApp = '6282379631626'; 
-        // 1. Ambil nilai dari semua input, termasuk dropdown baru
-        const tipePesanan = document.getElementById('tipe-pesanan').value;
-        const nama = document.getElementById('nama').value;
-        const pesanan = document.getElementById('pesanan').value;
-        const alamat = document.getElementById('alamat').value;
-        const errorMessageDiv = document.getElementById('error-message');
-
-        // 2. Kustom Validasi (Memastikan semua kolom terisi)
-        if (!tipePesanan || !nama || !pesanan || !alamat) {
-            errorMessageDiv.textContent = '❌ Kesalahan: Mohon lengkapi semua kolom yang wajib diisi!';
-            return; // Hentikan proses jika ada kolom kosong
-        } else {
-            errorMessageDiv.textContent = ''; // Hapus pesan error jika validasi berhasil
-        }
-
-        // 3. Susun Pesan yang akan dikirim
-        let pesan = `
-        PESANAN BARU HALOJEK
-        Tipe Pesanan: ${tipePesanan}
-        Dari: ${nama}
-        Pesanan: ${pesanan}
-        Alamat Pickup/Kirim: ${alamat}
-
-        Mohon segera diproses. Terima kasih.
-        `;
-
-        // 4. Encoding Pesan
-        const pesanTerencode = encodeURIComponent(pesan);
-
-        // 5. Buat Tautan WhatsApp Final
-        const tautanWhatsApp = `https://wa.me/${noWhatsApp}?text=${pesanTerencode}`;
-
-        // 6. Arahkan pengguna ke Tautan
-        window.location.href = tautanWhatsApp;
-        
-        // Opsional: Reset form
-        // this.reset();
-    });
-</script>
-
 </body>
 </html>
