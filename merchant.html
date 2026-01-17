@@ -4,261 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merchant - Hibualamo Ojek</title>
-    <style>
-        :root {
-            --primary: #10a9c4;
-            --primary-hover: #0d8ca3;
-            --accent: #e67e22;
-            --bg: #f8f9fa;
-            --card: white;
-            --success: #27ae60;
-            --text: #2c3e50;
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10a9c4',
+                        'primary-hover': '#0d8ca3',
+                        success: '#27ae60',
+                    }
+                }
+            }
         }
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg);
-            margin: 0;
-            padding: 15px;
-            min-height: 100vh;
-            color: var(--text);
-        }
-        .container { max-width: 560px; margin: 0 auto; }
-        header {
-            text-align: center;
-            padding: 25px 0;
-            background: linear-gradient(135deg, var(--primary), #0f8da6);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 25px;
-        }
-        h1 { font-size: 2rem; margin-bottom: 6px; }
-        .back-btn {
-            display: inline-block;
-            margin-top: 15px;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-        .back-btn2 {
-            display: inline-block;
-            margin-top: 15px;
-            color: red;
-            text-decoration: none;
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .accordion {
-            background: var(--card);
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-        .accordion-header {
-            color: white;
-            padding: 18px 20px;
-            font-size: 1.25rem;
-            font-weight: bold;
-            cursor: pointer;
-            user-select: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: opacity 0.3s;
-            background-size: cover;
-            background-position: center;
-            min-height: 120px;
-            position: relative;
-        }
-        .accordion-header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1;
-        }
-        .accordion-header > * { position: relative; z-index: 2; }
-        .accordion-header:hover::before { background: rgba(0,0,0,0.6); }
-        .accordion-header::after {
-            content: '▼';
-            font-size: 1rem;
-            transition: transform 0.3s;
-            z-index: 2;
-        }
-        .accordion-header.active::after { transform: rotate(180deg); }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            background: #fdfdfd;
-        }
-        .accordion-body.open { max-height: 5000px; }
-
-        .menu-list { padding: 20px; }
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid #eee;
-            gap: 16px;
-        }
-        .menu-item:last-child { border-bottom: none; }
-        .menu-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .menu-info { flex: 1; }
-        .menu-info h4 { margin: 0; font-size: 1.1rem; }
-        .menu-info p { margin: 5px 0 0; color: #666; font-size: 0.95rem; }
-        .price-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 8px;
-        }
-        .price { font-weight: bold; color: var(--success); font-size: 1.15rem; }
-        .btn-pesan {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-pesan:hover { background: var(--primary-hover); }
-
-        .other-option { text-align: center; margin: 40px 0; }
-        .btn-large {
-            display: inline-block;
-            background: var(--success);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            box-shadow: 0 6px 16px rgba(39,174,96,0.3);
-        }
-    </style>
+    </script>
 </head>
-<body>
-<div class="container">
-    <header>
-        <h1>Daftar Merchant</h1>
-        <p>Pilih menu dari restoran favoritmu di Tobelo & sekitarnya</p>
-        <a href="ongkir.html" class="back-btn2">Cek Ongkir Wilayah</a><br>
-        <a href="index.html" class="back-btn">← Kembali ke Dashboard</a>
+<body class="bg-gray-100 min-h-screen">
+<div class="max-w-2xl mx-auto px-6 py-8">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary to-primary-hover text-white rounded-2xl shadow-2xl p-10 text-center mb-10">
+        <h1 class="text-4xl font-bold mb-4">Daftar Merchant</h1>
+        <p class="font-mono text-xl opacity-90 mb-6">Pilih menu dari restoran favoritmu di Tobelo & sekitarnya</p>
+        <div class="space-x-6">
+            <a href="ongkir.html" class="text-red-400 font-semibold text-lg hover:underline">Cek Ongkir Wilayah</a>
+            <a href="index.html" class="text-white font-semibold text-lg hover:underline">← Kembali ke Dashboard</a>
+        </div>
     </header>
 
-    <!-- Contoh beberapa restoran (gambar warung tetap, gambar menu ditambahkan) -->
-    <div class="accordion">
-        <div class="accordion-header" style="background-image: url('https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/titisnariyah/EpCATd8NFHatK3uMPgooXxz3fxhf6A8WfSmXjDAgQyN8CMNHvYRDQtc6fr3i2ziW4sk.jpg');">Alci Pizza</div>
-        <div class="accordion-body">
-            <div class="menu-list">
-                <div class="menu-item">
-                    <img src="https://assets.dapurumami.com/uploads/recipe/nasi-goreng-spesial-ala-sajiku-e888f1fce9237d6a629c91869edbc9d0.jpg" alt="Nasi Goreng Spesial" class="menu-img">
-                    <div class="menu-info">
-                        <h4>Nasi Goreng Spesial</h4>
-                        <p>+ Telur + Es Teh Manis</p>
-                    </div>
-                    <div class="price-btn">
-                        <span class="price">Rp 28.000</span>
-                        <button class="btn-pesan" onclick="pilihMenu('1 porsi Nasi Goreng Spesial + Telur + Es Teh Manis', 'Rp 28.000', 'Warung Makan Bu Tini', 'Jl. Tobelo - Galela No.45, dekat Pasar Lama')">Pesan</button>
-                    </div>
+    <!-- Accordion Section -->
+    <div class="space-y-6">
+        <!-- Merchant 1: Roti Bakar Bandung (contoh dengan banyak menu) -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="relative cursor-pointer" onclick="toggleAccordion(this)">
+                <img src="https://images.hive.blog/0x0/https://files.peakd.com/file/peakd-hive/titisnariyah/EpCATd8NFHatK3uMPgooXxz3fxhf6A8WfSmXjDAgQyN8CMNHvYRDQtc6fr3i2ziW4sk.jpg"
+                     alt="Roti Bakar Bandung" class="w-full h-56 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-between px-8">
+                    <h3 class="text-2xl md:text-3xl font-bold text-white">Roti Bakar Bandung</h3>
+                    <span class="text-3xl text-white transition-transform">▼</span>
                 </div>
-                <div class="menu-item">
-                    <img src="https://i.ytimg.com/vi/Bj2kAAKt_cE/maxresdefault.jpg" alt="Ayam Bakar Taliwang" class="menu-img">
-                    <div class="menu-info">
-                        <h4>Ayam Bakar Taliwang</h4>
-                        <p>+ Nasi + Lalapan + Sambal + Es Jeruk</p>
-                    </div>
-                    <div class="price-btn">
-                        <span class="price">Rp 35.000</span>
-                        <button class="btn-pesan" onclick="pilihMenu('1 porsi Ayam Bakar Taliwang + Nasi + Lalapan + Sambal + Es Jeruk', 'Rp 35.000', 'Warung Makan Bu Tini', 'Jl. Tobelo - Galela No.45, dekat Pasar Lama')">Pesan</button>
+            </div>
+            <div class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                <!-- Area Menu yang Bisa Di-Scroll -->
+                <div class="max-h-[400px] overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100">
+                    <div class="grid grid-cols-1 gap-8">
+                        <!-- Menu 1 -->
+                        <div class="flex items-center gap-6 bg-gray-50 p-5 rounded-2xl shadow hover:shadow-lg transition">
+                            <img src="img/1.jpg"
+                                 alt="Roti Bakar Bandung" class="w-28 h-28 object-cover rounded-xl shadow-md">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold">Roti Bakar Bandung</h4>
+                                <p class="text-success font-bold text-xl mt-3">Rp 25.000</p>
+                            </div>
+                            <button onclick="pilihMenu('Roti Bakar Bandung','Rp 25.000','Roti Bakar Bandung','Jl. Tobelo - Galela No.45, dekat Pasar Lama')"
+                                    class="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg shadow transition hover:scale-105">
+                                Pesan
+                            </button>
+                        </div>
+
+                        <!-- Menu 2 -->
+                        <div class="flex items-center gap-6 bg-gray-50 p-5 rounded-2xl shadow hover:shadow-lg transition">
+                            <img src="img/5.jpg"
+                                 alt="Choococrunchhy Extra Topping" class="w-28 h-28 object-cover rounded-xl shadow-md">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold">Choococrunchhy Extra Topping</h4>
+                                <p class="text-success font-bold text-xl mt-3">Rp 30.000</p>
+                            </div>
+                            <button onclick="pilihMenu('Choococrunchhy Extra Topping','Rp 30.000','Roti Bakar Bandung','Jl. Tobelo - Galela No.45, dekat Pasar Lama')"
+                                    class="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg shadow transition hover:scale-105">
+                                Pesan
+                            </button>
+                        </div>
+
+                        <!-- Menu 3 -->
+                        <div class="flex items-center gap-6 bg-gray-50 p-5 rounded-2xl shadow hover:shadow-lg transition">
+                            <img src="img/4.jpg"
+                                 alt="Extra Topping Chococrunchy Oreo" class="w-28 h-28 object-cover rounded-xl shadow-md">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold">Extra Topping Chococrunchy Oreo</h4>
+                                <p class="text-success font-bold text-xl mt-3">Rp 35.000</p>
+                            </div>
+                            <button onclick="pilihMenu('Extra Topping Chococrunchy Oreo','Rp 35.000','Roti Bakar Bandung','Jl. Tobelo - Galela No.45, dekat Pasar Lama')"
+                                    class="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg shadow transition hover:scale-105">
+                                Pesan
+                            </button>
+                        </div>
+
+                        <!-- Menu 4 -->
+                        <div class="flex items-center gap-6 bg-gray-50 p-5 rounded-2xl shadow hover:shadow-lg transition">
+                            <img src="img/3.jpg"
+                                 alt="Keju Susu Extra Topping Keju Oreo" class="w-28 h-28 object-cover rounded-xl shadow-md">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold">Keju Susu Extra Topping Keju Oreo</h4>
+                                <p class="text-success font-bold text-xl mt-3">Rp 35.000</p>
+                            </div>
+                            <button onclick="pilihMenu('Keju Susu Extra Topping Keju Oreo','Rp 35.000','Roti Bakar Bandung','Jl. Tobelo - Galela No.45, dekat Pasar Lama')"
+                                    class="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg shadow transition hover:scale-105">
+                                Pesan
+                            </button>
+                        </div>
+
+                        <!-- Menu 5 (tambahan, akan muncul scroll) -->
+                        <div class="flex items-center gap-6 bg-gray-50 p-5 rounded-2xl shadow hover:shadow-lg transition">
+                            <img src="img/2.jpg"
+                                 alt="Keju Susu Extra Topping" class="w-28 h-28 object-cover rounded-xl shadow-md">
+                            <div class="flex-1">
+                                <h4 class="text-xl font-bold">Keju Susu Extra Topping</h4>
+                                <p class="text-success font-bold text-xl mt-3">Rp 30.000</p>
+                            </div>
+                            <button onclick="pilihMenu('Keju Susu Extra Topping','Rp 30.000','Roti Bakar Bandung','Jl. Tobelo - Galela No.45, dekat Pasar Lama')"
+                                    class="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg shadow transition hover:scale-105">
+                                Pesan
+                            </button>
+                        </div>
+
+                        <!-- Kamu bisa tambah menu lain di sini sebanyak yang diinginkan -->
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Merchant lain bisa ditambahkan di sini dengan pola yang sama -->
     </div>
 
-    <!-- Kopi Janji Jiwa -->
-    <div class="accordion">
-        <div class="accordion-header" style="background-image: url('https://images.hive.blog/DQmXQjQTvcGFtXzhykzrUdn6yCZGSQzJwknYsvUaMYpA5Qy/1641623819189-01.jpeg');">De'Waroeng Carmel</div>
-        <div class="accordion-body">
-            <div class="menu-list">
-                <div class="menu-item">
-                    <img src="https://athome.starbucks.com/sites/default/files/styles/recipe_banner_xlarge/public/2024-05/CaramelMacchiato_RecipeHeader_848x539_%402x.jpg.webp?itok=jO6d0gba" alt="Caramel Macchiato" class="menu-img">
-                    <div class="menu-info"><h4>Caramel Macchiato Large</h4><p>Ice / Hot</p></div>
-                    <div class="price-btn">
-                        <span class="price">Rp 32.000</span>
-                        <button class="btn-pesan" onclick="pilihMenu('1 Caramel Macchiato Large (Ice)', 'Rp 32.000', 'Kopi Janji Jiwa Tobelo', 'Jl. Kemakmuran No.12, depan Kantor Bupati')">Pesan</button>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <img src="https://asset.kompas.com/crops/oHA_InWvgjNnNKDmm3TszdEj0e0=/0x0:1000x667/1200x800/data/photo/2020/07/26/5f1d9e3132c94.jpg" alt="Es Kopi Susu Gula Aren" class="menu-img">
-                    <div class="menu-info"><h4>Es Kopi Susu Gula Aren</h4><p>Large</p></div>
-                    <div class="price-btn">
-                        <span class="price">Rp 28.000</span>
-                        <button class="btn-pesan" onclick="pilihMenu('1 Es Kopi Susu Gula Aren Large', 'Rp 28.000', 'Kopi Janji Jiwa Tobelo', 'Jl. Kemakmuran No.12, depan Kantor Bupati')">Pesan</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tambahkan restoran lain dengan pola yang sama, ganti src gambar sesuai menu -->
-    <!-- Contoh Ayam Geprek Bensu -->
-    <div class="accordion">
-        <div class="accordion-header" style="background-image: url('https://eatbook.sg/wp-content/uploads/2023/06/DSC07083.jpg');">RM. Seafood T'Prox</div>
-        <div class="accordion-body">
-            <div class="menu-list">
-                <div class="menu-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Ayam_geprek.png" alt="Ayam Geprek" class="menu-img">
-                    <div class="menu-info"><h4>Geprek Original Level 3</h4><p>+ Nasi + Es Teh</p></div>
-                    <div class="price-btn">
-                        <span class="price">Rp 25.000</span>
-                        <button class="btn-pesan" onclick="pilihMenu('1 Geprek Original Level 3 + Nasi + Es Teh', 'Rp 25.000', 'Ayam Geprek Bensu Tobelo', 'Jl. Trans Halut, sebelah SPBU')">Pesan</button>
-                    </div>
-                </div>
-                <!-- Tambah menu lain jika perlu -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Lakukan hal yang sama untuk semua 12 restoran lainnya dengan gambar menu yang sesuai -->
-
-    <div class="other-option">
-        <a href="pesan.html?tipe=%F0%9F%8D%BD%EF%B8%8F%20Makanan%2FMinuman" class="btn-large">
-            🍴 Pesan dari Tempat Lain yang Belum Terdaftar
+    <!-- Pesan dari tempat lain -->
+    <div class="text-center my-16">
+        <a href="pesan.html?tipe=%F0%9F%8D%BD%EF%B8%8F%20Makanan%2FMinuman"
+           class="inline-block bg-success hover:bg-green-700 text-white font-bold text-2xl py-6 px-12 rounded-3xl shadow-2xl transition hover:scale-105 font-mono">
+        Pesan dari Tempat Lain
         </a>
     </div>
 </div>
 
 <script>
-document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-        const body = header.nextElementSibling;
-        const isOpen = body.classList.contains('open');
-        document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
-        document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
-        if (!isOpen) {
-            body.classList.add('open');
-            header.classList.add('active');
+// Toggle accordion
+function toggleAccordion(header) {
+    const body = header.nextElementSibling;
+    const arrow = header.querySelector('span:last-child');
+    
+    // Tutup yang lain (opsional)
+    document.querySelectorAll('.accordion-body').forEach(b => {
+        if (b !== body) {
+            b.classList.remove('max-h-screen', 'py-6');
         }
     });
-});
+    document.querySelectorAll('.accordion-header span:last-child').forEach(a => {
+        if (a !== arrow) a.classList.remove('rotate-180');
+    });
 
+    // Toggle yang diklik
+    body.classList.toggle('max-h-screen');
+    body.classList.toggle('py-6');
+    arrow.classList.toggle('rotate-180');
+}
+
+// Fungsi pilih menu (tanpa emoji pada tipe agar sesuai opsi select)
 function pilihMenu(detailPesanan, harga, namaMerchant, alamatMerchant) {
     const params = new URLSearchParams({
-        tipe: '🍽️ Makanan/Minuman',
+        tipe: 'Makanan/Minuman', // tanpa emoji agar cocok dengan value select
         pesanan: `${detailPesanan}\n\nDari: ${namaMerchant}\nHarga: ${harga}\n(Tambahkan catatan seperti kurang pedas, tanpa bawang, dll)`,
         pickup: alamatMerchant
     });
